@@ -1,0 +1,47 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600&display=swap');
+
+:root {
+    --primary: #fe2c55;
+    --header-height: 56px;
+    --nav-bar-background: #ffffff;
+    --always-white: #ffffff;
+    --primary-button-background: #1b74e4;
+    --secondary-icon: #65676b;
+    --media-inner-border: #00000000;
+    --primary-icon: #050505;
+    --secondary-button-background: #e4e6eb;
+    --notification-badge: #e41e3f;
+    --primary-button-text: #ffffff;
+    --always-dark-overlay: rgba(0, 0, 0, 0.4);
+    --primary-deemphasized-button-background: #e7f3ff;
+    --primary-text: #050505;
+    --card-background: #ffffff;
+    --card-box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    --surface-background: #ffffff;
+    --shadow-2: rgba(0, 0, 0, 0.2);
+    --comment-background: #f0f2f5;
+    --divider: #ced0d4;
+    --filter-secondary-icon: invert(39%) sepia(21%) saturate(200%) saturate(109.5%) hue-rotate(174deg) brightness(94%)
+        contrast(86%);
+    --secondary-text: #65676b;
+    --filter-accent: invert(39%) sepia(57%) saturate(200%) saturate(200%) saturate(200%) saturate(200%) saturate(200%)
+        saturate(147.75%) hue-rotate(202deg) brightness(97%) contrast(96%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Arimo', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+}
