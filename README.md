@@ -14,12 +14,15 @@ A lightweight social media application inspired by Facebook, featuring core func
 ## ✨ Features
 - **User Authentication**: Login/Register with JWT & OAuth (Google/Facebook).
 - **Post Management**: Create, edit, delete posts with text/images.
+- **Real-time Chat**: Instant messaging using Socket.io.
 - **Friend System**: Send/accept friend requests, view friends list.
 - **Notifications**: Real-time updates for likes, comments, and messages.
 - **Responsive Design**: Optimized for mobile and desktop.
 
 ## 🛠️ Technologies
 - **Frontend**: React.js, Redux Toolkit, Tailwind CSS, Socket.io Client
+- **Backend**: Node.js, Express.js, RESTful API
+- **Database**: MongoDB (Mongoose ODM)
 - **Real-time**: Socket.io
 - **Authentication**: JWT, Passport.js
 - **Deployment**: Docker, Nginx (tùy chọn)
