@@ -4,6 +4,7 @@ import App from './app';
 import GlobalStyles from './components/GlobalStyles';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 // Tạo component App
 root.render(
     <React.StrictMode>

@@ -5,31 +5,27 @@ import { DefaultLayout } from './components/Layout';
 import { publicRoutes, privateRoutes } from './routes';
 import PrivateRoute from './components/PrivateRoute';
 
-const AppContent = () => {
+const AppContent = () =>  {
   const { isAuthenticated, isLoading } = useAuth();
 
   const renderRoutes = (routes, isPrivate = false) => {
-    return routes.map((route) => { // Sửa thành route thay vì index
+    return routes.map((route, index) => {
       const Layout = route.layout || DefaultLayout;
       const Page = route.component;
       
       const element = isPrivate ? (
-        <PrivateRoute key={route.path}>
+        <PrivateRoute>
           <Layout>
             <Page />
           </Layout>
         </PrivateRoute>
       ) : (
-        <Layout key={route.path}>
+        <Layout>
           <Page />
         </Layout>
       );
 
-      return <Route 
-        key={route.path} 
-        path={route.path} 
-        element={element} 
-      />;
+      return <Route key={index} path={route.path} element={element} />;
     });
   };
 
@@ -43,14 +39,11 @@ const AppContent = () => {
         <Routes>
           {renderRoutes(publicRoutes)}
           {renderRoutes(privateRoutes, true)}
-          <Route 
-            path="*" 
-            element={
-              isAuthenticated ? 
-                <Navigate to="/home" replace /> : 
-                <Navigate to="/login" replace />
-            } 
-          />
+          <Route path="*" element={
+            isAuthenticated ? 
+              <Navigate to="/home" replace /> : 
+              <Navigate to="/login" replace />
+          } />
         </Routes>
       </div>
     </Router>

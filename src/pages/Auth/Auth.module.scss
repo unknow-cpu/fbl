@@ -1,0 +1,86 @@
+$primary-color: #1877f2;
+$secondary-color: #42b72a;
+$border-color: #ddd;
+$background-color: #f0f2f5;
+
+.body1 {
+    background-color: $background-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .container {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 24rem;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid $border-color;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+    }
+  }
+  
+  .button {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    &.login {
+      background-color: $primary-color;
+      color: white;
+      margin-bottom: 1rem;
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+    &.signup {
+      background-color: $secondary-color;
+      color: white;
+      &:hover {
+        background-color: darken($secondary-color, 10%);
+      }
+    }
+  }
+  
+  .link {
+    color: $primary-color;
+    text-align: center;
+    display: block;
+    margin-bottom: 1rem;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  .footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: #555;
+    .bold {
+      font-weight: 600;
+    }
+  }
+
+  .error {
+    color: red;
+    font-size: 1.275rem;
+    margin: 0.25rem;
+    text-align: center;
+  }

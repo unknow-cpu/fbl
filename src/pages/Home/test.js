@@ -40,85 +40,6 @@ function CenterPage() {
     function likeClick() {
         setIslike(!islike);
     }
-    
-    const [isClickcreatpost, setisClickcreatpost] = useState(false);
-    const Creatpost2 = () => {
-        return(
-        <div className={cx('post-creatpost')}>
-            <div className={cx('post-creatpost1')}>
-                <div className={cx('post-creatpost11')}>
-                    <span>tạo bài viết</span>
-                </div>
-            </div>
-            <div className={cx('post-creatpost2')}>
-                <div className={cx('post-creatpost21')}>
-                    <p></p>
-                </div>
-            </div>
-            <div className={cx('post-creatpost3')}>
-                <div className={cx('post-creatpost31')}>
-                    <btn className={cx('btn-creatpost31')}></btn>
-                </div>
-            </div>
-        </div>);
-    }
-    const Clickcreatpost = () => {
-        setisClickcreatpost(!isClickcreatpost);
-    }
-
-    const Creatpost = () => {
-        return(<div className={cx('Post')}>
-        <div
-            className={cx('Post1')}
-            style={{ borderRadius: 'max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px' }}
-        >
-            <div aria-label="Tạo bài viết" className={cx('Post2')}>
-                <div className={cx('post-string')}>
-                    <a tabIndex="0" role="link" href={name} className={cx('post-a')}>
-                        <svg
-                            aria-hidden="true"
-                            className={cx('x3ajldb')}
-                            data-visualcompletion="ignore-dynamic"
-                            role="none"
-                            style={{ height: '40px', width: '40px' }}
-                        >
-                            <mask id=":r48l:">
-                                <circle cx="20" cy="20" fill="white" r="20"></circle>
-                            </mask>
-                            <g mask="url(#:r48l:)">
-                                <image
-                                    x="0"
-                                    y="0"
-                                    height="100%"
-                                    preserveAspectRatio="xMidYMid slice"
-                                    width="100%"
-                                    xlinkHref="https://scontent.fhan14-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=c6021c&_nc_ohc=AOBsKHyRwnQAX-c2axz&_nc_ht=scontent.fhan14-1.fna&oh=00_AfAslOXzxOGTZyFDtxrgAaoT5miMAqRERjAYfKj9azcrBQ&oe=65155BB8"
-                                    style={{ height: '40px', width: '40px' }}
-                                ></image>
-                                <circle className={cx('post-cir')} cx="20" cy="20" r="20"></circle>
-                            </g>
-                        </svg>
-                    </a>
-                    <div onClick={Clickcreatpost} className={cx('post-btn')} role="button" tabIndex="0">
-                        <div className={cx('post-btn1')}>
-                            <span
-                                className={cx('post-btn2')}
-                                style={{
-                                    WebkitBoxOrient: 'vertical',
-                                    WebkitLineClamp: '2',
-                                    display: '-webkit-box',
-                                }}
-                            >
-                                {name} ơi, bạn đang nghĩ gì thế?
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div className={cx('post-another')}></div>
-            </div>
-        </div>
-    </div>)
-    }
     let Ele = (
         <div className={cx('post-div')}>
             <div role="feed">
@@ -169,7 +90,7 @@ function CenterPage() {
                                                                         height="100%"
                                                                         preserveAspectRatio="xMidYMid slice"
                                                                         width="100%"
-                                                                        xlinkHref="https://scontent.fhan5-2.fna.fbcdn.net/v/t39.30808-6/448260578_122111267708337380_3801432464665185112_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEXQGRE5fuuMSyh_hHa2aih-NFl3Ycncnf40WXdhydyd2PeyKlC2Pq-_RCz4qbz8qtCThv6HSGNYJVYZTau9kvU&_nc_ohc=s_8E1S1fmRoQ7kNvgGUQPBd&_nc_oc=Adi31oBFt2qCx3L1Mwaen8j9sWsDZXq0r_UYkmd2vDCceqdGZNySI2GCGZMm4tAPuoc&_nc_zt=23&_nc_ht=scontent.fhan5-2.fna&_nc_gid=A6syv8xnhTkifreM5IwwJou&oh=00_AYGJkHo2zAbpqmqBuGS30bhLEqKs_crWI-KZKosyaTD8FA&oe=67D21247"
+                                                                        xlinkHref="https://scontent.fhan14-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=c6021c&_nc_ohc=AOBsKHyRwnQAX-c2axz&_nc_ht=scontent.fhan14-1.fna&oh=00_AfAslOXzxOGTZyFDtxrgAaoT5miMAqRERjAYfKj9azcrBQ&oe=65155BB8"
                                                                         style={{
                                                                             height: '40px',
                                                                             width: '40px',
@@ -194,12 +115,12 @@ function CenterPage() {
                                                                     <span>
                                                                         <a
                                                                             className={cx('post-header21-span1-a')}
-                                                                            href=""
+                                                                            href="https://www.facebook.com/le.tai.581730?__cft__[0]=AZV2gYcAyDX-3qfQrzO0wCJI7velOQxkmnivA7dUEWsBHhE8S2urTVW-dzoKBJ9ge3M0tk9vOW7_I8tVA88XOlNO7-HjIzyuYgTVzcNWjbaUM4FMOofKBk0h4ua6KoHhlFRBoE8HqEqimvy5SgLE1A0TmcnTnUnIZPUmzI6dKdhXGlvWnDUI0Ijib1BFiLSaHt1bqbVDe_xfoXh8eLR_FMR7&amp;__tn__=-]C%2CP-R"
                                                                             role="link"
                                                                             tabIndex="0"
                                                                         >
                                                                             <span className={cx('xt0psk2')}>
-                                                                                <span>Căn hộ view sông Hàn - Đà Nẵng</span>
+                                                                                <span>Lê Tài</span>
                                                                             </span>
                                                                         </a>
                                                                     </span>
@@ -255,8 +176,7 @@ function CenterPage() {
                                                                     dir="auto"
                                                                     style={{ textAlign: 'start' }}
                                                                 >
-                                                                    Sun Group mở bán quỹ Căn hộ View trọn “Sông Hàn” + Lễ hội pháo hoa DIFF Đà Nẵng giá từ 65tr/m2. Lợi nhuận cho thuê từ 15tr/tháng.
-                                                                    - Sở hữu lâu dài, Liền kề Sông Hàn, cách 3 phút đến cầu Thuận Phước, 5 phút điển Mỹ Khê.
+                                                                    hello world
                                                                 </div>
                                                             </div>
                                                         </span>
@@ -295,7 +215,7 @@ function CenterPage() {
                                                                             alt="Có thể là hình ảnh về văn bản cho biết 'Tui làm mất quyển số 6. Hai tháng sau tui mới tìm thấy nó 9 8 7 5'"
                                                                             className={cx('post-center1111-img')}
                                                                             referrerPolicy="origin-when-cross-origin"
-                                                                            src="https://scontent.fhan5-11.fna.fbcdn.net/v/t45.1600-4/476452101_120214984440870622_713097078202972093_n.jpg?stp=cp0_dst-jpg_p526x296_q75_spS444_tt6&_nc_cat=104&ccb=1-7&_nc_sid=467c85&_nc_eui2=AeEUc0Ij5r0f7urPki5o--UQpueqQp35ow2m56pCnfmjDYKllZ_FciU2KjCCKVLzZeikiy5S_NWNzq_SDt9Cice-&_nc_ohc=psJr8JxVp5YQ7kNvgFJ3XuN&_nc_oc=AdjT2oqVjTyFtSkhc2TtkSGb8eWof--Djutek0WK0uQ_3GRrOtW0uq9mRAlPyrbBbY0&_nc_zt=1&_nc_ht=scontent.fhan5-11.fna&_nc_gid=AtL8Mmo_pwjVy6vqB_xqzKm&oh=00_AYF6t9j89TJp5EQC5FxVAPrH3zT3u3x8IJ1kMPgwOITitw&oe=67D21A72"
+                                                                            src="https://scontent.fhan14-4.fna.fbcdn.net/v/t39.30808-6/378320895_300289495943265_4969725458768193502_n.jpg?stp=cp6_dst-jpg_p843x403&_nc_cat=111&ccb=1-7&_nc_sid=5614bc&_nc_ohc=i4RF8qIES6IAX8D0ihf&_nc_ht=scontent.fhan14-4.fna&oh=00_AfDYOnbTY_ndqcnLDMsQN3PmvTPi0RggOQgs3xzXgFdsgw&oe=65091DFF"
                                                                         />
                                                                     </div>
                                                                 </div>
@@ -416,10 +336,58 @@ function CenterPage() {
         <div className={cx('Centerpage1')}>
             <div className={cx('Centerpage2')}>
                 <div className={cx('Centerpage3')}>
-                    <Creatpost/>
-                    {isClickcreatpost&&<Creatpost2/>}
+                    <div className={cx('Post')}>
+                        <div
+                            className={cx('Post1')}
+                            style={{ borderRadius: 'max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px' }}
+                        >
+                            <div aria-label="Tạo bài viết" className={cx('Post2')}>
+                                <div className={cx('post-string')}>
+                                    <a tabIndex="0" role="link" href={name} className={cx('post-a')}>
+                                        <svg
+                                            aria-hidden="true"
+                                            className={cx('x3ajldb')}
+                                            data-visualcompletion="ignore-dynamic"
+                                            role="none"
+                                            style={{ height: '40px', width: '40px' }}
+                                        >
+                                            <mask id=":r48l:">
+                                                <circle cx="20" cy="20" fill="white" r="20"></circle>
+                                            </mask>
+                                            <g mask="url(#:r48l:)">
+                                                <image
+                                                    x="0"
+                                                    y="0"
+                                                    height="100%"
+                                                    preserveAspectRatio="xMidYMid slice"
+                                                    width="100%"
+                                                    xlinkHref="https://scontent.fhan14-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=c6021c&_nc_ohc=AOBsKHyRwnQAX-c2axz&_nc_ht=scontent.fhan14-1.fna&oh=00_AfAslOXzxOGTZyFDtxrgAaoT5miMAqRERjAYfKj9azcrBQ&oe=65155BB8"
+                                                    style={{ height: '40px', width: '40px' }}
+                                                ></image>
+                                                <circle className={cx('post-cir')} cx="20" cy="20" r="20"></circle>
+                                            </g>
+                                        </svg>
+                                    </a>
+                                    <div className={cx('post-btn')} role="button" tabIndex="0">
+                                        <div className={cx('post-btn1')}>
+                                            <span
+                                                className={cx('post-btn2')}
+                                                style={{
+                                                    WebkitBoxOrient: 'vertical',
+                                                    WebkitLineClamp: '2',
+                                                    display: '-webkit-box',
+                                                }}
+                                            >
+                                                {name} ơi, bạn đang nghĩ gì thế?
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={cx('post-another')}></div>
+                            </div>
+                        </div>
+                    </div>
                     {Ele}
-                    
                 </div>
             </div>
         </div>

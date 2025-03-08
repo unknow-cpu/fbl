@@ -1,9 +1,6 @@
 import classNames from 'classnames/bind';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import style from './Header.module.scss';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../../context/AuthContext';
 const cx = classNames.bind(style);
 
 function Header() {
@@ -104,8 +101,6 @@ function LogoInput() {
     );
 }
 
-
-
 var Sty = {
     height: '40px',
     width: '40px',
@@ -116,7 +111,7 @@ const Page = [
         id: 0,
         name: 'Trang chủ',
         class: 'HomePage',
-        href: '/home',
+        href: '/',
         highlight: -1,
         d: 'M17.5 23.979 21.25 23.979C21.386 23.979 21.5 23.864 21.5 23.729L21.5 13.979C21.5 13.427 21.949 12.979 22.5 12.979L24.33 12.979 14.017 4.046 3.672 12.979 5.5 12.979C6.052 12.979 6.5 13.427 6.5 13.979L6.5 23.729C6.5 23.864 6.615 23.979 6.75 23.979L10.5 23.979 10.5 17.729C10.5 17.04 11.061 16.479 11.75 16.479L16.25 16.479C16.939 16.479 17.5 17.04 17.5 17.729L17.5 23.979ZM21.25 25.479 17 25.479C16.448 25.479 16 25.031 16 24.479L16 18.327C16 18.135 15.844 17.979 15.652 17.979L12.348 17.979C12.156 17.979 12 18.135 12 18.327L12 24.479C12 25.031 11.552 25.479 11 25.479L6.75 25.479C5.784 25.479 5 24.695 5 23.729L5 14.479 3.069 14.479C2.567 14.479 2.079 14.215 1.868 13.759 1.63 13.245 1.757 12.658 2.175 12.29L13.001 2.912C13.248 2.675 13.608 2.527 13.989 2.521 14.392 2.527 14.753 2.675 15.027 2.937L25.821 12.286C25.823 12.288 25.824 12.289 25.825 12.29 26.244 12.658 26.371 13.245 26.133 13.759 25.921 14.215 25.434 14.479 24.931 14.479L23 14.479 23 23.729C23 24.695 22.217 25.479 21.25 25.479Z',
         dSelector:
@@ -177,9 +172,6 @@ const Style = {
 
 var nummess = 8;
 var numnoti = 13;
-
-
-    
 
 function Btnctr() {
     const [isctr, setIsctr] = useState(false);
@@ -369,21 +361,8 @@ function Btnctr() {
             </div>,
         );
     }
-    const navigate = useNavigate();
-    const { logout } = useAuth();
-    function avaClick() {
-        
-    
-    const handleLogout = async () => {
-        try {
-            await logout();
-            navigate('/login');
-            
-          } catch (error) {
-            console.error('Logout failed:', error);
-          }
-    };
 
+    function avaClick() {
         if (btn === 1) {
             setBtn(0);
         } else {
@@ -397,6 +376,7 @@ function Btnctr() {
                             <div className={cx('ctrele42')}>
                                 <div className={cx('ctrele43')}>
                                     <div className={cx('ctrele44')}>
+                                        <div className={cx('ctrele45')}>
                                             <div className={cx('ctrele46')}>
                                                 <div className={cx('ctrele471')}></div>
                                                 <div className={cx('ctrele472')}>
@@ -420,32 +400,13 @@ function Btnctr() {
                                                                         </span>
                                                                     </div>
                                                                 </div>
-                                                                <div 
-                                                                    className={cx('ctrele472311')} 
-                                                                    onClick={handleLogout}
-                                                                    >
-                                                                    <div
-                                                                        style={{
-                                                                            marginBottom: '7px',
-                                                                            marginTop: '7px',
-                                                                        }}
-                                                                    >
-                                                                        <span className={cx('ctrele472312')} dir="auto">
-                                                                            <h1
-                                                                                className={cx('ctrele472313')}
-                                                                                tabIndex="-1"
-                                                                            >
-                                                                                đăng xuất
-                                                                            </h1>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                             <div className={cx('ctrele47232')}></div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -457,14 +418,6 @@ function Btnctr() {
     }
     var strnotif2 = 'Iin nhan';
     var strnotif4 = strnotif1 + ', ' + mess + ' chưa đọc';
-    const { user, fetchUser } = useAuth();
-    
-      useEffect(() => {
-        if (!user) {
-          fetchUser();
-        }
-      }, [user, fetchUser]);
-    const img = user.avatar ? `url('${user.avatar}')` : "/avata.jpg";
 
     return (
         <div aria-label="Cài đặt và kiểm soát tài khoản" className={cx('Controll-accout-label')}>
@@ -483,17 +436,16 @@ function Btnctr() {
                             <circle cx="20" cy="20" fill="white" r="20"></circle>
                         </mask>
                         <g mask="url(#:R6kmpaj9emhpapd5aq:)">
-                        <image 
-                                  href={img}
-                                style={{ 
-                                  width: '40px', 
-                                  height: '40px', 
-                                  backgroundSize: 'cover', 
-                                  backgroundPosition: 'center',
-                                  borderRadius: '50%',
-                                  overflow: 'hidden',
-                                  backgroundRepeat: 'no-repeat'
-                                }}></image> 
+                            <image
+                                style={Sty}
+                                x="0"
+                                y="0"
+                                height="100%"
+                                preserveAspectRatio="xMidYMid slice"
+                                width="100%"
+                                src="./public/avata.jpg"
+                                xlinkHref="https://scontent.fhan14-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=c6021c&_nc_ohc=AOBsKHyRwnQAX-c2axz&_nc_ht=scontent.fhan14-1.fna&oh=00_AfAslOXzxOGTZyFDtxrgAaoT5miMAqRERjAYfKj9azcrBQ&oe=65155BB8"
+                            ></image>
                             <circle className={cx('Accout-cir')} cx="20" cy="20" r="20"></circle>
                         </g>
                     </svg>
