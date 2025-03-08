@@ -6,10 +6,11 @@
 
 A lightweight social media application inspired by Facebook, featuring core functionalities like user authentication, post sharing, and real-time interactions.
 
-**Live Demo**: [https://your-demo-link.com](https://your-demo-link.com) (nếu có)  
 **GitHub Repo**: [https://github.com/unknow-cpu/fbl](https://github.com/unknow-cpu/fbl)
 
-![FBL Screenshot](screenshots/main.png) <!-- Thêm ảnh demo tại đây -->
+![FBL Screenshot](public/cv1)
+![FBL Screenshot](public/cv2)
+![FBL Screenshot](public/cv3)<!-- Thêm ảnh demo tại đây -->
 
 ## ✨ Features
 - **User Authentication**: Login/Register with JWT & OAuth (Google/Facebook).
