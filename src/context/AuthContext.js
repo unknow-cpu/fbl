@@ -11,104 +11,223 @@ export const AuthProvider = ({ children }) => {
     user: null
   });
 
-  // Hàm kiểm tra session
+  // Set Axios defaults for all requests
+  const setAxiosToken = (token) => {
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    } else {
+      delete axios.defaults.headers.common['Authorization'];
+    }
+  };
+
+  // Check session on mount
   const checkSession = async () => {
     try {
+      const token = sessionStorage.getItem('authToken');
+      if (!token) {
+        setAuthState({
+          isAuthenticated: false,
+          user: null,
+          isLoading: false,
+        });
+        setAxiosToken(null);
+        return;
+      }
+
+      // Set token in headers for this request
+      setAxiosToken(token);
+
       const { data } = await axios.get('http://localhost:5000/api/check-session', {
-        timeout: 5000, // Timeout sau 5s
-        withCredentials: true
+        timeout: 5000,
       });
-      
+
       setAuthState({
         isAuthenticated: data.isAuthenticated,
         user: data.user,
-        isLoading: false
+        isLoading: false,
       });
-      
-      // Đồng bộ với sessionStorage
-      if (data.isAuthenticated) {
-        sessionStorage.setItem('authToken', data.token);
-      } else {
+
+      if (!data.isAuthenticated) {
         sessionStorage.removeItem('authToken');
+        setAxiosToken(null);
       }
     } catch (error) {
+      console.error('Check session error:', error);
       sessionStorage.removeItem('authToken');
+      setAxiosToken(null);
       setAuthState({
         isAuthenticated: false,
         user: null,
-        isLoading: false
+        isLoading: false,
       });
     }
   };
 
-  // Hàm đăng nhập
+  // Login
   const login = async (credentials) => {
     try {
-      const { data } = await axios.post('http://localhost:5000/api/login', credentials, {
-        withCredentials: true
-      });
-      
+      const { data } = await axios.post('http://localhost:5000/api/login', credentials);
+
       setAuthState({
         isAuthenticated: true,
         user: data.user,
-        isLoading: false
+        isLoading: false,
       });
-      
+
       sessionStorage.setItem('authToken', data.token);
+      setAxiosToken(data.token);
+
       return data;
     } catch (error) {
+      console.error('Login error:', error);
       throw error;
     }
   };
 
-  // Hàm đăng xuất
+  // Logout
   const logout = async () => {
     try {
-      await axios.post('http://localhost:5000/api/logout', null, {
-        withCredentials: true
-      });
-      await checkSession(); // Quan trọng
-    
-      // Xóa mọi dữ liệu local
+      await axios.post('http://localhost:5000/api/logout');
       sessionStorage.removeItem('authToken');
-      
-      // Cập nhật state
+      setAxiosToken(null);
       setAuthState({
         isAuthenticated: false,
         user: null,
-        isLoading: false
+        isLoading: false,
       });
-  
     } catch (error) {
       console.error('Logout error:', error);
-      // Xử lý fallback nếu server không phản hồi
       sessionStorage.removeItem('authToken');
+      setAxiosToken(null);
       setAuthState({
         isAuthenticated: false,
         user: null,
-        isLoading: false
+        isLoading: false,
       });
     }
   };
 
+  // Fetch user (optional, for manual refresh)
   const fetchUser = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/user', {
-        withCredentials: true
-      });
-      
+      const token = sessionStorage.getItem('authToken');
+      if (!token) return null;
+
+      setAxiosToken(token);
+      const { data } = await axios.get('http://localhost:5000/api/user');
+
       if (data.success) {
-        setAuthState(prev => ({
+        setAuthState((prev) => ({
           ...prev,
-          user: data.user
+          user: data.user,
         }));
+        return data.user;
       }
-      return data.user;
+      return null;
     } catch (error) {
-      console.error('Lỗi lấy thông tin user:', error);
+      console.error('Fetch user error:', error);
       return null;
     }
   };
+
+  // // Hàm kiểm tra session
+  // const checkSession = async () => {
+  //   try {
+  //     const { data } = await axios.get('http://localhost:5000/api/check-session', {
+  //       timeout: 5000, // Timeout sau 5s
+  //       withCredentials: true
+  //     });
+      
+  //     setAuthState({
+  //       isAuthenticated: data.isAuthenticated,
+  //       user: data.user,
+  //       isLoading: false
+  //     });
+      
+  //     // Đồng bộ với sessionStorage
+  //     if (data.isAuthenticated) {
+  //       sessionStorage.setItem('authToken', data.token);
+  //     } else {
+  //       sessionStorage.removeItem('authToken');
+  //     }
+  //   } catch (error) {
+  //     sessionStorage.removeItem('authToken');
+  //     setAuthState({
+  //       isAuthenticated: false,
+  //       user: null,
+  //       isLoading: false
+  //     });
+  //   }
+  // };
+
+  // // Hàm đăng nhập
+  // const login = async (credentials) => {
+  //   try {
+  //     const { data } = await axios.post('http://localhost:5000/api/login', credentials, {
+  //       withCredentials: true
+  //     });
+      
+  //     setAuthState({
+  //       isAuthenticated: true,
+  //       user: data.user,
+  //       isLoading: false
+  //     });
+      
+  //     sessionStorage.setItem('authToken', data.token);
+  //     return data;
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // };
+
+  // // Hàm đăng xuất
+  // const logout = async () => {
+  //   try {
+  //     await axios.post('http://localhost:5000/api/logout', null, {
+  //       withCredentials: true
+  //     });
+  //     await checkSession(); // Quan trọng
+    
+  //     // Xóa mọi dữ liệu local
+  //     sessionStorage.removeItem('authToken');
+      
+  //     // Cập nhật state
+  //     setAuthState({
+  //       isAuthenticated: false,
+  //       user: null,
+  //       isLoading: false
+  //     });
+  
+  //   } catch (error) {
+  //     console.error('Logout error:', error);
+  //     // Xử lý fallback nếu server không phản hồi
+  //     sessionStorage.removeItem('authToken');
+  //     setAuthState({
+  //       isAuthenticated: false,
+  //       user: null,
+  //       isLoading: false
+  //     });
+  //   }
+  // };
+
+  // const fetchUser = async () => {
+  //   try {
+  //     const { data } = await axios.get('http://localhost:5000/api/user', {
+  //       withCredentials: true
+  //     });
+      
+  //     if (data.success) {
+  //       setAuthState(prev => ({
+  //         ...prev,
+  //         user: data.user
+  //       }));
+  //     }
+  //     return data.user;
+  //   } catch (error) {
+  //     console.error('Lỗi lấy thông tin user:', error);
+  //     return null;
+  //   }
+  // };
   
 
   useEffect(() => {

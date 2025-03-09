@@ -6,6 +6,7 @@ const cx = classNames.bind(style);
 
 
 const Sidebar = () => {
+const [profile, setprofile] = useState([]);
 const { user, fetchUser } = useAuth();
 
   useEffect(() => {
@@ -13,9 +14,12 @@ const { user, fetchUser } = useAuth();
       fetchUser();
     }
   }, [user, fetchUser]);
-const name = user.name;
-const hrefprofile = `/${name}`;
-const img = user.avatar ? `url('${user.avatar}')` : "url('/avata.jpg')";
+  if (!user) {
+    return <div>Loading...</div>;
+  }
+  const name = user.name;
+  const hrefprofile = `/${name}`;
+  const img = user.avatar ? `url('${user.avatar}')` : "url('/avata.jpg')";
 
 const Page = [
     { id: 0, name: name, class: 'ProfilePage', href: hrefprofile, highlight: -1, image: img, position:'0 0'},

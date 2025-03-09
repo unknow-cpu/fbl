@@ -444,7 +444,7 @@ function Btnctr() {
                                 preserveAspectRatio="xMidYMid slice"
                                 width="100%"
                                 src="./public/avata.jpg"
-                                xlinkHref="https://scontent.fhan14-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=c6021c&_nc_ohc=AOBsKHyRwnQAX-c2axz&_nc_ht=scontent.fhan14-1.fna&oh=00_AfAslOXzxOGTZyFDtxrgAaoT5miMAqRERjAYfKj9azcrBQ&oe=65155BB8"
+                                //xlinkHref="https://scontent.fhan14-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=c6021c&_nc_ohc=AOBsKHyRwnQAX-c2axz&_nc_ht=scontent.fhan14-1.fna&oh=00_AfAslOXzxOGTZyFDtxrgAaoT5miMAqRERjAYfKj9azcrBQ&oe=65155BB8"
                             ></image>
                             <circle className={cx('Accout-cir')} cx="20" cy="20" r="20"></circle>
                         </g>

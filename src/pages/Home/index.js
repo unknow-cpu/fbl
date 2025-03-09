@@ -1,6 +1,8 @@
 import classNames from 'classnames/bind';
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import style from './Home.module.scss';
+import Post from './Post/Post';
+import { useAuth } from '../../context/AuthContext';
 const cx = classNames.bind(style);
 
 function Home() {
@@ -12,7 +14,18 @@ function Home() {
 }
 
 function CenterPage() {
-    var name = 'man';
+    const { user, fetchUser } = useAuth();
+    
+      useEffect(() => {
+        if (!user) {
+          fetchUser();
+        }
+      }, [user, fetchUser]);
+      if (!user) {
+        return <div>Loading...</div>;
+      }
+    const name = user.name;
+    const img = user.avatar ? `url('${user.avatar}')` : "/avata.jpg";
     const [postEle, setpostEle] = useState([]);
     const [islike, setIslike] = useState(false);
     var likesty = {
@@ -52,18 +65,36 @@ function CenterPage() {
             </div>
             <div className={cx('post-creatpost2')}>
                 <div className={cx('post-creatpost21')}>
-                    <p></p>
+                    <textarea 
+                        className={cx('textarea-creatpost')}
+                        placeholder="Bạn đang nghĩ gì?"
+                    ></textarea>
+                     {/* <input 
+                        type="text" 
+                        className={cx('input-creatpost')}
+                        placeholder="Bạn đang nghĩ gì?"
+                    /> */}
                 </div>
             </div>
             <div className={cx('post-creatpost3')}>
                 <div className={cx('post-creatpost31')}>
-                    <btn className={cx('btn-creatpost31')}></btn>
+                    <div className={cx('post-creatpost311')}>
+                        <label htmlFor="file-upload" className={cx('label-file-upload')}>
+                            <i className="fas fa-camera"></i> Thêm ảnh
+                        </label>
+                        <input 
+                            id="file-upload" 
+                            type="file" 
+                            accept="image/*"
+                            className={cx('input-file-upload')}
+                    /></div>
+                    <btn className={cx('btn-creatpost312')}>Đăng bài</btn>
                 </div>
             </div>
         </div>);
     }
     const Clickcreatpost = () => {
-        setisClickcreatpost(!isClickcreatpost);
+       // setisClickcreatpost(!isClickcreatpost);
     }
 
     const Creatpost = () => {
@@ -74,30 +105,27 @@ function CenterPage() {
         >
             <div aria-label="Tạo bài viết" className={cx('Post2')}>
                 <div className={cx('post-string')}>
-                    <a tabIndex="0" role="link" href={name} className={cx('post-a')}>
-                        <svg
-                            aria-hidden="true"
-                            className={cx('x3ajldb')}
-                            data-visualcompletion="ignore-dynamic"
-                            role="none"
-                            style={{ height: '40px', width: '40px' }}
-                        >
-                            <mask id=":r48l:">
-                                <circle cx="20" cy="20" fill="white" r="20"></circle>
-                            </mask>
-                            <g mask="url(#:r48l:)">
-                                <image
-                                    x="0"
-                                    y="0"
-                                    height="100%"
-                                    preserveAspectRatio="xMidYMid slice"
-                                    width="100%"
-                                    xlinkHref="https://scontent.fhan14-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=c6021c&_nc_ohc=AOBsKHyRwnQAX-c2axz&_nc_ht=scontent.fhan14-1.fna&oh=00_AfAslOXzxOGTZyFDtxrgAaoT5miMAqRERjAYfKj9azcrBQ&oe=65155BB8"
-                                    style={{ height: '40px', width: '40px' }}
-                                ></image>
-                                <circle className={cx('post-cir')} cx="20" cy="20" r="20"></circle>
-                            </g>
-                        </svg>
+                <a tabIndex="0" role="link" href={name} className={cx('post-a')}>
+                    <div
+                        className={cx('avatar-container')}
+                        style={{ 
+                            width: '40px', 
+                            height: '40px', 
+                            borderRadius: '50%', 
+                            overflow: 'hidden', 
+                            position: 'relative' 
+                        }}
+                    >
+                        <img
+                            src='/avata.jpg'
+                            alt="Avatar"
+                            style={{ 
+                                width: '100%', 
+                                height: '100%', 
+                                objectFit: 'cover',  // Đảm bảo ảnh vừa với khung mà không bị biến dạng
+                            }}
+                        />
+                    </div>
                     </a>
                     <div onClick={Clickcreatpost} className={cx('post-btn')} role="button" tabIndex="0">
                         <div className={cx('post-btn1')}>
@@ -419,6 +447,7 @@ function CenterPage() {
                     <Creatpost/>
                     {isClickcreatpost&&<Creatpost2/>}
                     {Ele}
+                    <Post/>
                     
                 </div>
             </div>
