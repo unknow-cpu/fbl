@@ -130,6 +130,29 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const fetchProfile = async (userId) => {
+    try {
+      const token = sessionStorage.getItem('authToken');
+    if (!token) throw new Error('No token found');
+
+    const res = await axios.get(`http://localhost:5000/api/users/${userId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const { user: profileUser, posts, isOwnProfile, isFriend, hasSentRequest } = res.data.data;
+    return {
+      profileUser,
+      posts,
+      isOwnProfile,
+      isFriend,
+      hasSentRequest,
+    };
+  } catch (err) {
+    console.error('Fetch profile error:', err.response?.data || err.message);
+    throw new Error(err.response?.data?.message || 'Lỗi khi tải trang cá nhân');
+  } 
+  };
+
   // // Hàm kiểm tra session
   // const checkSession = async () => {
   //   try {
@@ -240,7 +263,8 @@ export const AuthProvider = ({ children }) => {
       login,
       logout,
       checkSession,
-      fetchUser 
+      fetchUser,
+      fetchProfile,
     }}>
       {children}
     </AuthContext.Provider>

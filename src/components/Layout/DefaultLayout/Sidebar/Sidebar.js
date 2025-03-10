@@ -18,7 +18,7 @@ const { user, fetchUser } = useAuth();
     return <div>Loading...</div>;
   }
   const name = user.name;
-  const hrefprofile = `/${name}`;
+  const hrefprofile = `/profile/${user.id}`;
   const img = user.avatar ? `url('${user.avatar}')` : "url('/avata.jpg')";
 
 const Page = [

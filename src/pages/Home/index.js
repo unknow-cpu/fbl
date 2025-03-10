@@ -25,7 +25,8 @@ function CenterPage() {
         return <div>Loading...</div>;
       }
     const name = user.name;
-    const img = user.avatar ? `url('${user.avatar}')` : "/avata.jpg";
+    const hrefprofile = `/profile/${user.id}`;
+    const avatarUrl = user.avatar ? `http://localhost:5000${user.avatar}` : '/avata.jpg';
     const [postEle, setpostEle] = useState([]);
     const [islike, setIslike] = useState(false);
     var likesty = {
@@ -105,7 +106,7 @@ function CenterPage() {
         >
             <div aria-label="Tạo bài viết" className={cx('Post2')}>
                 <div className={cx('post-string')}>
-                <a tabIndex="0" role="link" href={name} className={cx('post-a')}>
+                <a tabIndex="0" role="link" href={hrefprofile} className={cx('post-a')}>
                     <div
                         className={cx('avatar-container')}
                         style={{ 
@@ -117,14 +118,15 @@ function CenterPage() {
                         }}
                     >
                         <img
-                            src='/avata.jpg'
+                            src={avatarUrl}
                             alt="Avatar"
-                            style={{ 
-                                width: '100%', 
-                                height: '100%', 
-                                objectFit: 'cover',  // Đảm bảo ảnh vừa với khung mà không bị biến dạng
-                            }}
-                        />
+                            style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover', // Better than backgroundSize for <img>
+                            borderRadius: '50%',
+                            }}onError={(e) => (e.target.src = '/avata.jpg')} // Fallback if URL fails
+                            />
                     </div>
                     </a>
                     <div onClick={Clickcreatpost} className={cx('post-btn')} role="button" tabIndex="0">
@@ -445,8 +447,6 @@ function CenterPage() {
             <div className={cx('Centerpage2')}>
                 <div className={cx('Centerpage3')}>
                     <Creatpost/>
-                    {isClickcreatpost&&<Creatpost2/>}
-                    {Ele}
                     <Post/>
                     
                 </div>

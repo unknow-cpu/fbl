@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import classNames from 'classnames/bind';
 import styles from './Post.module.scss';
@@ -18,7 +19,6 @@ const Post = () => {
       try {
         const res = await axios.get('http://localhost:5000/api/posts');
         
-      console.log('API Response:', res.data);
         setPosts(res.data.data.posts);
       } catch (err) {
         console.error('Lỗi tải bài đăng:', err);
@@ -202,7 +202,7 @@ const Post = () => {
                     <button className={cx('btn-creatpost312')} onClick={handleCreatePost} >Đăng bài</button>
                 </div>
             </div>
-        </div>;
+        </div>
 
       {/* List of posts */}
       {posts.map((post) => {
@@ -228,10 +228,14 @@ const Post = () => {
                 }}
               />
               <div>
-                <h3>
+                <Link 
+                  to={`/profile/${post.userpostid?._id}`} 
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
                   {post.userpostid?.firstName || 'Unknown'}{' '}
                   {post.userpostid?.lastName || 'User'}
-                </h3>
+                </Link>
+
                 <p>
                   {new Date(post.createdAt).toLocaleString('vi-VN', {
                     year: 'numeric',

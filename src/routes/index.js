@@ -1,4 +1,4 @@
-import { FriendsLayout, MarketplaceLayout, VideoLayout , GroupLayout , AuthLayout , RegisterLayout } from '../components/Layout/index';
+import { FriendsLayout, MarketplaceLayout, VideoLayout , GroupLayout , AuthLayout , RegisterLayout, ProfileLayout } from '../components/Layout/index';
 import Following from '../pages/Following';
 import Friends from '../pages/Friends';
 import Home from '../pages/Home';
@@ -6,6 +6,7 @@ import Marketplace from '../pages/Marketplace';
 import Watch from '../pages/Watch';
 import LoginForm from '../pages/Auth';
 import RegisterForm from '../pages/Register';
+import Profile from '../pages/Profile';
 import { BrowserRouter as  Navigate } from 'react-router-dom';
 
 
@@ -16,6 +17,7 @@ export const publicRoutes = [
 
 export const privateRoutes = [
     { path: '/home', component: Home },
+    { path: '/Profile/:userId', component: Profile, layout: ProfileLayout },
     { path: '/following', component: Following },
     { path: '/group', component: Following, layout: GroupLayout },
     { path: '/watch', component: Watch, layout: VideoLayout },
